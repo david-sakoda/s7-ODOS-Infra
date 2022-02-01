@@ -1,0 +1,26 @@
+Make an ssh key, name it bootstrap-server
+
+put the key in this same folder
+
+
+chmod 400 bootstrap-server.pem
+
+
+
+Run terraform
+
+-----
+
+Terraform init
+
+Terraform plan 
+
+Terraform apply
+
+------
+
+Test connection 
+
+aws eks --region us-east-1 update-kubeconfig --name preprod-cluster-dev
+
+kubectl get svc
