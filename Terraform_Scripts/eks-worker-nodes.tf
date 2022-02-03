@@ -43,13 +43,14 @@ resource "aws_eks_node_group" "private-nodes" {
   node_group_name = "private-nodes"
   node_role_arn   = aws_iam_role.preprod-node.arn
   subnet_ids = [
+        aws_subnet.public-us-east-1a.id,
         aws_subnet.private-us-east-1a.id,
         aws_subnet.private-us-east-1b.id
     ]
   instance_types   = ["t3.medium"]
 
   scaling_config {
-      desired_size    = 1
+      desired_size    = 2
       max_size        = 5
       min_size        = 0
     }
