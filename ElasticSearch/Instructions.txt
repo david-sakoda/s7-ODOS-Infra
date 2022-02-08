@@ -1,0 +1,48 @@
+To reinstall elastic search on K8s Cluster manually
+
+1.Make sure you're connected to the cluster
+2.Run the following command to install elastic search control:
+	kubectl apply -f https://download.elastic.co/downloads/eck/1.5.0/all-in-one.yaml
+
+3.Run this command to start deploying elasticsearch on the cluster
+	kubectl apply -f odos-es-deployment.yml
+
+4.To get the elastic search password, run
+	kubectl get secret os-dev-es-elastic-user -o go-template='{{.data.elastic | base64decode}}'
+
+5.Expose the elasticsearch svc:
+	kubectl port-forward service/os-dev-es-http 9200
+
+6.Elastic search is now accessible on https://localhost:9200, password is on step 4, username is elastic
+
+
+----------
+To Install Kibana:
+
+1. Run the deployment script:
+	kubectl apply -f kibana-dev.yml
+
+2. Expose kibana and access on http://localhost:5601
+        kubectl port-forward service/kibana-dev-kb-http 5601
+
+----------
+
+To install the monitoring stack through helm:
+
+1. Install helm charts
+2. Run command to add prometheus stack repo: helm repo add prome-repo https://prometheus-community.github.io/helm-charts
+3. Install the monitoring stack on k8s: helm install monitoring prome-repo/kube-prometheus-stack
+4. To show default values and pipe to a file: helm show values prome-repo/kube-prometheus-stack > helm_values.yml
+5. To update grafana password: helm upgrade monitoring prome-repo/kube-prometheus-stack --set grafana.adminPassword=yourpasswordherenoquote
+6. Expose grafana to access locally: kubectl port-forward service/monitoring-grafana 80
+7. Access grafana on http://localhost:80. Username is admin, password is set on step 5
+
+
+------
+What's next? Make all this works on Terraform.
+
+
+
+
+
+
