@@ -1,3 +1,44 @@
+To setup access to aws on windows:
+
+1. Install aws cli to run command and access aws environment:
+   Download and run the AWS CLI MSI installer for Windows (64-bit):
+
+   https://awscli.amazonaws.com/AWSCLIV2.msi
+
+2. Install Kubectl tool, download Kubectl tool using curl or just hit the link directly to get the exe file
+    curl -LO "https://dl.k8s.io/release/v1.23.0/bin/windows/amd64/kubectl.exe"
+
+3. Store your kubectl.ext in a desired location and add the path to windows environment. For example, I put it on D:\Software\kubectl and 
+   reference it as an environment variable on windows
+
+4. Create your access key id and secret key on aws console. It should be under the Security Tab on your username drop down on the top right.
+
+5. Store your access key and secret key somewhere safe
+
+6. With your cmd or shell script open. Run: aws configure
+   Set up your access with keys from step 5
+
+
+7. Now you're authenticated. Run this to hook up to your default cluster
+  aws eks --region us-east-1 update-kubeconfig --name preprod-cluster-dev
+
+8. To test that your k8s connection is good. Run: kubectl get svc
+   You should now see a list of services.
+
+9. Run kubectl get secret os-dev-es-elastic-user -o go-template='{{.data.elastic | base64decode}}' 
+   to get elastic search password. Username is elastic
+
+10. To access elastic search url: run kubectl port-forward service/os-dev-es-http 9200. 
+     Access through: https://localhost:9200
+
+11. To access Kibana URL: run kubectl port-forward service/monitoring-grafana 80 
+    Access through http://localhost:80
+
+
+-------------------------------------------------
+
+These steps below is just for starting a new k8s cluster and reinstall ES and monitoring service:
+
 To reinstall elastic search on K8s Cluster manually
 
 1.Make sure you're connected to the cluster
