@@ -8,7 +8,7 @@ To setup access to aws on windows:
 2. Install Kubectl tool, download Kubectl tool using curl or just hit the link directly to get the exe file
     curl -LO "https://dl.k8s.io/release/v1.23.0/bin/windows/amd64/kubectl.exe"
 
-3. Store your kubectl.ext in a desired location and add the path to windows environment. For example, I put it on D:\Software\kubectl and 
+3. Store your kubectl.exe in a desired location and add the path to windows environment. For example, I put it on D:\Software\kubectl and 
    reference it as an environment variable on windows
 
 4. Create your access key id and secret key on aws console. It should be under the Security Tab on your username drop down on the top right.
@@ -31,8 +31,8 @@ To setup access to aws on windows:
 10. To access elastic search url: run kubectl port-forward service/os-dev-es-http 9200. 
      Access through: https://localhost:9200
 
-11. To access Kibana URL: run kubectl port-forward service/monitoring-grafana 80 
-    Access through http://localhost:80
+11. To access Kibana URL: kubectl port-forward service/kibana-dev-kb-http 5601
+    Access through http://localhost:5601
 
 
 -------------------------------------------------
