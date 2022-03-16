@@ -28,7 +28,7 @@ module "db" {
   identifier = "odosmoviedbdev"
  
   engine               = "postgres"
-  engine_version       = "11.10"
+  engine_version       = "11.12"
   family               = "postgres11" # DB parameter group
   major_engine_version = "11"         # DB option group
   instance_class       = "db.t3.large"
