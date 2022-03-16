@@ -84,6 +84,6 @@ resource "aws_lambda_function" "terraform-get-all-movies-java" {
   #  security_group_ids = ["public_sg_with_aurora"]
   # } 
 
-  #role = aws_iam_role.terraform_lambda_exec.arn
-  role  = "arn:aws:iam::543335889378:role/odos-lambda-role"
+  role = aws_iam_role.terraform_lambda_exec.arn
+  
 }
