@@ -11,3 +11,13 @@ variable "jenkin-user" {
   default = "ec2-user"
   type    = string
 }
+
+variable "ssh-key-name" {
+  default = "bootstrap-keypair"
+  type    = string
+}
+
+variable "grafana-pass" {
+  default = "graf@password"
+  type    = string
+}

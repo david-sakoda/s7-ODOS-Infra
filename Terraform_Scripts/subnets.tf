@@ -19,7 +19,7 @@ resource "aws_subnet" "private-us-east-1b" {
   
 
   tags = {
-    Name                               = "private-us-east-1a"
+    Name                               = "private-us-east-1b"
     "kubernetes.io/role/internal-elb"  = "1"
     "kubernetes.io/cluster/preprod-cluster-dev"       = "shared"
   }
@@ -120,6 +120,16 @@ resource "aws_network_acl" "private" {
     from_port  = 443
     to_port    = 443
   }
+
+   ingress {
+    protocol   = -1
+    rule_no    = 100
+    action     = "allow"
+    cidr_block = "0.0.0.0/0" 
+    from_port  = 0
+    to_port    = 0  
+  }
+
 
   ingress {
     protocol   = -1
