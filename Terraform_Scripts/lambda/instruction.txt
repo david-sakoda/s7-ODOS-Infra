@@ -1,0 +1,7 @@
+To deploy a lambda function, just zip it up and put in the same location
+
+All terraform assets here should be moved to the main folder with other components
+
+reference vpc and subnet with terraform id
+
+update the aws role to reflect needed policies
